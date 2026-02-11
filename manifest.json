@@ -1,0 +1,22 @@
+{
+    "manifest_version": 3,
+    "name": "QLDT Cookie Helper",
+    "description": "Lấy cookies từ trang qldt.hust.edu.vn để sử dụng trong ứng dụng tracking teacher",
+    "version": "1.0.0",
+    "permissions": [
+        "cookies",
+        "storage",
+        "clipboardWrite"
+    ],
+    "host_permissions": [
+        "https://qldt.hust.edu.vn/*"
+    ],
+    "action": {
+        "default_popup": "popup.html"
+    },
+    "icons": {
+        "16": "icons/icon16.png",
+        "48": "icons/icon48.png",
+        "128": "icons/icon128.png"
+    }
+}

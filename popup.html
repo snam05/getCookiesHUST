@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QLDT Cookie Helper</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="popup.css">
+</head>
+
+<body>
+    <div class="bg-gradient"></div>
+
+    <div class="container">
+        <!-- Auth Status -->
+        <div class="auth-bar" id="authBar">
+            <span class="auth-dot" id="authDot"></span>
+            <span id="authText">Đang kiểm tra cookies...</span>
+            <button class="btn-login" id="btnLogin" style="display:none">
+                Đăng nhập QLDT
+            </button>
+        </div>
+
+        <!-- Header -->
+        <header class="header">
+            <h1>🍪 Cookie Helper</h1>
+            <p>Xuất cookies từ QLDT</p>
+        </header>
+
+        <!-- Cookie Display -->
+        <div class="glass-card">
+            <div class="cookie-info">
+                <label>Cookies từ qldt.hust.edu.vn:</label>
+                <textarea id="cookieDisplay" readonly placeholder="Cookies sẽ hiển thị ở đây..."></textarea>
+            </div>
+            
+            <div class="button-group">
+                <button class="btn-action btn-copy" id="btnCopy">
+                    📋 Copy Cookies
+                </button>
+                <button class="btn-action btn-refresh" id="btnRefresh">
+                    🔄 Làm mới
+                </button>
+            </div>
+        </div>
+
+        <!-- Instructions -->
+        <div class="glass-card instructions">
+            <h3>📖 Hướng dẫn sử dụng:</h3>
+            <ol>
+                <li>Đăng nhập vào <strong>qldt.hust.edu.vn</strong></li>
+                <li>Mở extension này để lấy cookies</li>
+                <li>Click <strong>Copy Cookies</strong></li>
+                <li>Vào trang web tracking teacher</li>
+                <li>Paste cookies vào ô nhập</li>
+            </ol>
+        </div>
+
+        <!-- Message -->
+        <div id="message" class="message" style="display:none"></div>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+
+</html>
