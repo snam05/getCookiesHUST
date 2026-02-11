@@ -9,7 +9,9 @@
         "clipboardWrite"
     ],
     "host_permissions": [
-        "https://qldt.hust.edu.vn/*"
+        "https://qldt.hust.edu.vn/*",
+        "https://e.hust.edu.vn/*",
+        "https://*.hust.edu.vn/*"
     ],
     "action": {
         "default_popup": "popup.html"

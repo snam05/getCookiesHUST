@@ -27,24 +27,45 @@ async function checkCookies() {
     const display = document.getElementById('cookieDisplay');
 
     try {
-        // Lấy tất cả cookies từ domain qldt.hust.edu.vn (bao gồm cả subdomain)
-        const cookies = await chrome.cookies.getAll({ 
-            domain: 'qldt.hust.edu.vn'
-        });
+        // Lấy cookies từ tất cả các domain liên quan
+        const domains = [
+            'qldt.hust.edu.vn',
+            'e.hust.edu.vn',
+            '.hust.edu.vn'
+        ];
 
-        if (cookies && cookies.length > 0) {
+        let allCookies = [];
+        
+        // Lấy cookies từ từng domain
+        for (const domain of domains) {
+            const cookies = await chrome.cookies.getAll({ domain });
+            allCookies = allCookies.concat(cookies);
+        }
+
+        // Loại bỏ cookies trùng lặp (cùng name)
+        const uniqueCookies = [];
+        const seenNames = new Set();
+        
+        for (const cookie of allCookies) {
+            if (!seenNames.has(cookie.name)) {
+                seenNames.add(cookie.name);
+                uniqueCookies.push(cookie);
+            }
+        }
+
+        if (uniqueCookies.length > 0) {
             // Build cookie string - lấy tất cả cookies
-            currentCookies = cookies.map(c => `${c.name}=${c.value}`).join('; ');
+            currentCookies = uniqueCookies.map(c => `${c.name}=${c.value}`).join('; ');
 
             // Hiển thị
             dot.className = 'auth-dot ok';
-            text.textContent = `Tìm thấy ${cookies.length} cookies`;
+            text.textContent = `Tìm thấy ${uniqueCookies.length} cookies`;
             btn.style.display = 'none';
             display.value = currentCookies;
 
             // Log chi tiết
-            console.log('✅ Cookies đã lấy:', cookies.length);
-            console.log('Cookie names:', cookies.map(c => c.name).join(', '));
+            console.log('✅ Cookies đã lấy:', uniqueCookies.length);
+            console.log('Cookie names:', uniqueCookies.map(c => c.name).join(', '));
             console.log('Full cookies:', currentCookies);
             
             showMessage('Đã tìm thấy cookies từ QLDT!', 'success');
