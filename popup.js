@@ -27,13 +27,13 @@ async function checkCookies() {
     const display = document.getElementById('cookieDisplay');
 
     try {
-        // Lấy tất cả cookies từ qldt.hust.edu.vn
+        // Lấy tất cả cookies từ domain qldt.hust.edu.vn (bao gồm cả subdomain)
         const cookies = await chrome.cookies.getAll({ 
-            url: 'https://qldt.hust.edu.vn' 
+            domain: 'qldt.hust.edu.vn'
         });
 
         if (cookies && cookies.length > 0) {
-            // Build cookie string
+            // Build cookie string - lấy tất cả cookies
             currentCookies = cookies.map(c => `${c.name}=${c.value}`).join('; ');
 
             // Hiển thị
@@ -45,6 +45,7 @@ async function checkCookies() {
             // Log chi tiết
             console.log('✅ Cookies đã lấy:', cookies.length);
             console.log('Cookie names:', cookies.map(c => c.name).join(', '));
+            console.log('Full cookies:', currentCookies);
             
             showMessage('Đã tìm thấy cookies từ QLDT!', 'success');
         } else {
